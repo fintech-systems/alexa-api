@@ -1,12 +1,12 @@
-# Technology API
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/fintech-systems/packagist-boilerplate) [![Build Status](https://app.travis-ci.com/fintech-systems/packagist-boilerplate.svg?branch=main)](https://app.travis-ci.com/fintech-systems/packagist-boilerplate) ![GitHub](https://img.shields.io/github/license/fintech-systems/packagist-boilerplate)
+# Alexa API
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/fintech-systems/alexa-api) [![Build Status](https://app.travis-ci.com/fintech-systems/alexa-api.svg?branch=main)](https://app.travis-ci.com/fintech-systems/alexa-api) ![GitHub](https://img.shields.io/github/license/fintech-systems/alexa-api)
 
-A Technology API designed to run standalone or part of a Laravel Application
+An Amazon Alexa PHP API designed to run standalone or part of a Laravel Application
 
 Requirements:
 
 - PHP 8.0
-- Technology
+- Alexa login
 
 ## Installation
 
@@ -16,14 +16,34 @@ You can install the package via composer:
 composer require fintech-systems/alexa-api
 ```
 
+## Troubleshooting
+
+Please see [TROUBLESHOOTING](TROUBLESHOOTING.md) for more information on how to troubleshoot Amazon Alexa API integration.
+
 # Usage
+
+## How it works
+
+1. Alexa sends a message to the intermediate API endpoint
+2. The intermediate API system sends an API request to the actual API
+3. The actual API responds and sends the message back to the intermediate endpoint, 
+4. ...who passes it back to the Alexa API
+5. ...which makes Alexa do something / speak
+
+## Environment
+
+The .env file needs this setting:
+
+```
+VOICE_API_URL="http://bas.fintechsystems.net/api/v1/"
+```
 
 ## Framework Agnostic PHP
 
 ```php
 <?php
 
-use FintechSystems\Api\Technology;
+use FintechSystems\Api\Alexa;
 
 require 'vendor/autoload.php';
 
